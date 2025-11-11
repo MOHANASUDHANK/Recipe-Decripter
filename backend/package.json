@@ -4,12 +4,12 @@
   "main": "index.js",
   "scripts": {
   "dev": "node --watch index.js",
-  "start": "node index.js",
+  "start": "node index.js"
+
+
+},
   
   "type": "module"
-
-
-}
 ,
   "keywords": [],
   "author": "",
