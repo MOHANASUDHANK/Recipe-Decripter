@@ -1,25 +1,19 @@
 import express from "express";
 import mongoose from "mongoose";
-import recipe from "./models/recipe.js";
- 
+import cors from "cors";
+import recipeRouters from "./routes/recipeRoutes.js";
 const app = express();
+app.use(cors());
+app.use(express.json());
 
-app.get("/",(req,res)=>{
-        res.send("server is running")
-})
+
+app.use("/recipes",recipeRouters);
+// app.use("/category",categoryRoutes);
 
 mongoose.connect(
 'mongodb://localhost:27017')
 .then(async ()=>{
         console.log('connected to db')
-        const pasta = new recipe({
-  title: "cream",
-  ingredients: ["pasta", "milk", "cheese"],
-  instructions: "Boil pasta, mix sauce, and serve hot.",
-  category: ["Main Course"]
-});
-
- pasta.save();
 })
 .catch(err=>console.log(err)
 )

@@ -1,9 +1,14 @@
 import mongoose from "mongoose";
 
 const recipeSchema = new mongoose.Schema({
-  title: String,
+  name: String,
   ingredients: [String],
-  category: [String],
+  category: [
+    {
+      type : mongoose.Schema.Types.ObjectId,
+      ref : "category"
+    }
+  ],
   instructions: String
 });
 
