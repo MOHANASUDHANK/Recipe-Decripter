@@ -1,10 +1,14 @@
-import { getAllRecipes, getRecipeById ,getRecipeByFilter } from "../controllers/recipeController.js";
+import { getAllRecipes, getRecipeById ,getRecipeByFilter, addRecipe, deleteRecipe, updateRecipe} from "../controllers/recipeController.js";
 import express from "express";
 
 const router =express.Router();
 
-router.get("/filter",getRecipeByFilter)
-router.get("/",getAllRecipes);
+router.post("/filter",getRecipeByFilter)//*
+router.get("/",getAllRecipes);//*
 router.get("/:id",getRecipeById);
+router.delete("/:id",deleteRecipe)
+router.patch("/:id",updateRecipe);
+router.post("/",addRecipe);
+
 
 export default router;
