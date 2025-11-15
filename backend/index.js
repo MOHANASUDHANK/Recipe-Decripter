@@ -2,12 +2,14 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import recipeRouters from "./routes/recipeRoutes.js";
+import categoryRouters from "./routes/categoryRoutes.js";
 const app = express();
 app.use(cors());
 app.use(express.json());
 
 
 app.use("/recipes",recipeRouters);
+app.use("/category",categoryRouters)
 // app.use("/category",categoryRoutes);
 
 mongoose.connect(
