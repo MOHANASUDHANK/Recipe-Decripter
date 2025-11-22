@@ -7,7 +7,7 @@ router.post("/filter",getRecipeByFilter)//*
 router.get("/",getAllRecipes);//*
 router.get("/:id",getRecipeById);
 router.delete("/:id",deleteRecipe)
-router.patch("/:id",updateRecipe);
+router.put("/:id",updateRecipe);
 router.post("/",addRecipe);
 
 
