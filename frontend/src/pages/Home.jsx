@@ -28,7 +28,7 @@ export default function Home() {
 
   return (
     <div className="home-container">
-        <Header  />
+        <Header setRecipes={setRecipes} />
         <RecipeGrid recipes={recipes}/>
        </div>
   );

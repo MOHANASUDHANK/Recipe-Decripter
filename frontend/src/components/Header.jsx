@@ -1,32 +1,42 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-export default function Header() {
+import "../css/filterForm.css"
+import FilterForm from "./FilterForm";
 
-        const navigate = useNavigate();
+export default function Header({setRecipes}) {
+  const navigate = useNavigate();
+  const [filterFormOpen, setFilterFormOpen] = useState(false);
 
-        function addrecipe(){
-                navigate(`/add-recipe`)
-        }
+  function addrecipe() {
+    navigate(`/add-recipe`);
+  }
 
-        return (
-          <div className="top-panel">
-      
-            <button className="add-btn"
-            onClick={addrecipe}
-            >+ Add Recipe</button>
-      
-            <input
-              type="text"
-              className="search-box"
-              placeholder="Search recipes..."
-            //  value={search}
-              //onChange={(e) => setSearch(e.target.value)}
-            />
-      
-            <select className="filter-dropdown">
-              <option value="all">All Categories</option>
-            </select>
-      
-          </div>
-        );
-      }
-      
+  function handleForm(){
+    setFilterFormOpen(false)
+  }
+  return (
+    <div className="top-panel">
+      <button className="add-btn" onClick={addrecipe}>
+        + Add Recipe
+      </button>
+
+      <input
+        type="text"
+        className="search-box"
+        placeholder="Search recipes..."
+        //  value={search}
+        //onChange={(e) => setSearch(e.target.value)}
+      />
+
+      <button type="buttom" onClick={() => setFilterFormOpen(true)}>
+        Filter
+      </button>
+      {filterFormOpen && (
+        <FilterForm
+        setFilterFormOpen = {setFilterFormOpen}
+        setRecipes = {setRecipes}
+        />
+      )}
+    </div>
+  );
+}
