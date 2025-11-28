@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { addRecipe, getCategories } from "../services/api";
+import { addRecipe, getCategories,addCategory } from "../services/api";
 import { useNavigate } from "react-router-dom";
 
 export default function AddRecipe(){
@@ -8,6 +8,7 @@ export default function AddRecipe(){
 
         const [categories, setCategories] = useState([]);
         const [ingredientInput, setIngredientInput] = useState("");
+                const [newCategory, setNewCategory] = useState("");
         const [formData, setFormData] = useState({
                 title : "",
                 ingredient :[],
@@ -86,6 +87,18 @@ export default function AddRecipe(){
                 })
         }
 
+        async function handleAddCategory(){
+                if(!newCategory.trim()) return;
+                try{
+const added = await addCategory({ name: newCategory.trim() });
+                        setCategories(prev => [...prev, added]);  
+                        setNewCategory("");
+                }
+                catch(e){
+                        console.log(e);
+                }
+        }
+
         return(
                 <div>
                         <form onSubmit={handleSubmit}>
@@ -119,7 +132,15 @@ export default function AddRecipe(){
                                         </label>
                                 ))}
                         </div>
-
+                        <div style={{ marginTop: "8px" }}>
+                                        <input
+                                        type="text"
+                                        placeholder="Add new category"
+                                        value={newCategory}
+                                        onChange={e => setNewCategory(e.target.value)}
+                                        />
+                                        <button type="button" onClick={handleAddCategory}>Add Category</button>
+                                </div>
                         <label>ingredients</label>
                         <input
                         type="text"

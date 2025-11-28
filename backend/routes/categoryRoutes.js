@@ -4,7 +4,7 @@ import { addCategory, deleteCategory, getAllCategories } from "../controllers/ca
 const router  =express.Router();
 
 router.get("/",getAllCategories);
-router.put("/",addCategory);
+router.post("/",addCategory);
 router.delete("/:id",deleteCategory);
 
 export default router;
